@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
 from .models import TodoApp
 
 # Create your views here.
@@ -38,11 +39,17 @@ class TodoAppDetailView(DetailView):
 
 # update view
 class TodoAppUpdateView(UpdateView):
-    model: TodoApp
+    model = TodoApp
     # fields that can be edited
     fields = [
         "title",
         "description"
     ]
     template_name = 'update.html'
-    success_url = "home"
+    success_url = "/"
+
+# delete view
+class TodoAppDeleteView(DeleteView):
+    model = TodoApp
+    template_name = 'delete.html'
+    success_url = "/"
